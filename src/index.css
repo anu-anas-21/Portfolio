@@ -8,12 +8,11 @@
   scroll-behavior: smooth;
 }
 
-html,
-body {
-  margin: 0;
+html {
   overflow-x: hidden;
 }
 
 body {
+  margin: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }

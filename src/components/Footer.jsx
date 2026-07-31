@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Mail, Heart, ArrowUp } from 'lucide-react'
+import { Mail, ArrowUp } from 'lucide-react'
 import Reveal from './Reveal'
 import { GithubIcon, LinkedinIcon } from './icons'
 
@@ -59,14 +59,9 @@ export default function Footer() {
 
           <div className="w-full h-px bg-slate-800 mb-8" />
 
-          <div className="flex flex-col md:flex-row items-center justify-between w-full gap-4">
-            <p className="text-slate-500 text-sm">
-              © {new Date().getFullYear()} Mohammed Anas A T. All rights reserved.
-            </p>
-            <p className="text-slate-500 text-sm flex items-center gap-1">
-              Crafted with <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500" /> using React
-            </p>
-          </div>
+          <p className="text-slate-500 text-sm text-center">
+            © {new Date().getFullYear()} Mohammed Anas A T. All rights reserved.
+          </p>
         </Reveal>
       </div>
 
