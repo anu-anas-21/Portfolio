@@ -1,5 +1,6 @@
 import { Lightbulb, Code, Rocket, ArrowRight } from 'lucide-react'
 import Reveal from './Reveal'
+import SectionHeading from './SectionHeading'
 
 const STEPS = [
   {
@@ -7,59 +8,53 @@ const STEPS = [
     icon: Lightbulb,
     title: 'Understand & Analyze',
     text: 'Gathering requirements and analyzing the problem to understand the best approach.',
-    badge: 'from-purple-500 to-indigo-500',
+    badge: 'from-brand to-brand-deep',
   },
   {
     num: '02',
     icon: Code,
     title: 'Design & Develop',
     text: 'Creating clean, scalable code with best practices and modern technologies.',
-    badge: 'from-pink-500 to-purple-500',
+    badge: 'from-brand-light to-brand',
   },
   {
     num: '03',
     icon: Rocket,
     title: 'Test & Deploy',
     text: 'Rigorous testing and smooth deployment to deliver production-ready solutions.',
-    badge: 'from-yellow-500 to-orange-500',
+    badge: 'from-gold to-gold-deep',
   },
 ]
 
 export default function Process() {
   return (
-    <section className="py-16 bg-white relative overflow-hidden">
-      <div className="absolute top-20 left-10 w-16 h-16 bg-purple-200 rounded-full opacity-40" />
-      <div className="absolute bottom-20 right-10 w-20 h-20 bg-yellow-200 rounded-full opacity-40" />
+    <section className="relative border-t border-white/5 py-16">
+      <div className="mx-auto max-w-6xl px-6">
+        <SectionHeading eyebrow="Working Process" title="My Working Process" />
 
-      <div className="max-w-6xl mx-auto px-6">
-        <Reveal className="text-center mb-10">
-          <span className="text-purple-600 font-bold text-sm tracking-wider uppercase">Working Process</span>
-          <h2 className="text-2xl md:text-4xl font-bold text-slate-900 mt-2">My Working Process</h2>
-        </Reveal>
-
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid gap-6 md:grid-cols-3">
           {STEPS.map((step, i) => {
             const Icon = step.icon
             return (
-              <Reveal key={step.num} delay={i * 0.1} className="relative">
+              <Reveal key={step.num} delay={i * 0.08} className="relative">
                 {i < STEPS.length - 1 && (
-                  <div className="hidden md:block absolute top-16 -right-9 z-10">
-                    <ArrowRight className="w-6 h-6 text-yellow-400" />
+                  <div className="absolute -right-9 top-16 z-10 hidden md:block">
+                    <ArrowRight className="h-6 w-6 text-brand/50" />
                   </div>
                 )}
-                <div className="bg-white rounded-2xl p-6 border-2 border-slate-100 hover:border-purple-200 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-                  <div className="inline-block mb-4">
+                <div className="group h-full rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm transition-all duration-300 hover:border-brand/40 hover:bg-white/[0.06]">
+                  <div className="mb-4 inline-block">
                     <div
-                      className={`w-12 h-12 rounded-xl bg-gradient-to-br ${step.badge} flex items-center justify-center text-white font-bold text-base shadow-lg`}
+                      className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${step.badge} font-display text-base font-bold text-white shadow-lg`}
                     >
                       {step.num}
                     </div>
                   </div>
                   <div className="mb-3">
-                    <Icon className="w-9 h-9 text-purple-600" />
+                    <Icon className="h-9 w-9 text-brand-glow transition-transform duration-300 group-hover:scale-110" />
                   </div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">{step.title}</h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">{step.text}</p>
+                  <h3 className="mb-2 font-display text-lg font-bold text-white">{step.title}</h3>
+                  <p className="text-sm leading-relaxed text-white/60">{step.text}</p>
                 </div>
               </Reveal>
             )

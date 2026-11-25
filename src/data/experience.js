@@ -7,6 +7,21 @@ export const EXPERIENCE = [
     type: 'Full-time',
     points: [
       {
+        text: 'Built Nexyu, a multi-tenant SaaS platform unifying lead capture (Meta Lead Ads), payment (Cashfree) and candidate operations across three modules on one shared identity and permission model. Its workflow engine calculates SLA deadlines, round-robin assigns an owner, creates the task and queues notifications atomically on every stage change, with Postgres row-level security isolating each tenant at the database layer.',
+        link: 'https://nexyu-flow.vercel.app',
+        linkLabel: 'nexyu-flow.vercel.app',
+      },
+      {
+        text: 'Developed Beverse Bot, a candidate self-service chatbot on Telegram and WhatsApp offering AI-grounded FAQ answers restricted to the organisation’s own content, OTP-verified application status lookup, and human escalation that opens round-robin assigned CRM tasks — deployed separately but sharing the CRM database over an authenticated internal API.',
+        link: null,
+        linkLabel: null,
+      },
+      {
+        text: 'Built the Join Beverse brand site, an animated single-page Next.js application bringing Edooka, Beverse Health and Beverse School together into one ecosystem narrative, with a motion-driven hero, orbit visual and animated impact counters.',
+        link: 'https://joinbeverse.vercel.app',
+        linkLabel: 'joinbeverse.vercel.app',
+      },
+      {
         text: 'Built Edooka, a full-stack assessment platform enabling timed multiple-choice examinations, instant pass/fail scoring, and PDF certificate generation with QR-code verification, integrated with payment processing for certificate unlocking.',
         link: 'https://edooka.in',
         linkLabel: 'edooka.in',
@@ -20,11 +35,6 @@ export const EXPERIENCE = [
         text: 'Delivered Beverse School, converting a static HTML prototype into a production Next.js application with a public marketing site, applicant waitlist/apply workflow, user authentication, and an admin panel for managing mentors and applicants.',
         link: 'https://beverseschool.com',
         linkLabel: 'beverseschool.com',
-      },
-      {
-        text: 'Built BriQu, a multi-tenant Next.js/PostgreSQL SaaS platform unifying lead capture (Meta Lead Ads), payment processing (Cashfree), and candidate workflow operations — with automatic SLA calculation, round-robin task assignment, and full audit logging.',
-        link: null,
-        linkLabel: null,
       },
     ],
   },

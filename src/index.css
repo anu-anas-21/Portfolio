@@ -1,18 +1,160 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-* {
-  scroll-behavior: smooth;
-}
-
 html {
   overflow-x: hidden;
+  scroll-behavior: smooth;
+  background: #07060d;
 }
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #07060d;
+  color: #f5f5f7;
+  font-family: 'General Sans', Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: #8b5cf6;
+  color: #fff;
+}
+
+/* Thin dark scrollbar so it disappears into the theme */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #07060d;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2342;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3d3360;
+}
+
+/* Elements GSAP reveals: hidden until the ScrollTrigger fires, so there is no
+   flash of un-animated content on first paint. */
+[data-reveal] {
+  opacity: 0;
+  will-change: transform, filter, opacity;
+}
+
+/* ---------------------------------------------------------------- tech ring
+   A 3D carousel driven entirely by one composited rotateY animation. The ring
+   radius scales with breakpoint so the chips never overlap on small screens. */
+.tech-ring-stage {
+  --ring-r: 230px;
+  perspective: 1100px;
+  height: 150px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* No mask here on purpose: masking a subtree that animates every frame adds
+     a compositing pass, and `backface-visibility: hidden` already makes chips
+     disappear as they turn edge-on at the sides — the same fade, for free. */
+}
+
+.tech-ring {
+  position: relative;
+  transform-style: preserve-3d;
+  animation: ring-spin 26s linear infinite;
+  width: 160px;
+  height: 44px;
+}
+
+.tech-ring-stage:hover .tech-ring {
+  animation-play-state: paused;
+}
+
+.tech-ring__item {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Without this the far half of the ring shows its mirrored back face, so
+     half the labels read backwards. Hiding it makes chips fade in and out as
+     they come around, which is the intended effect anyway. */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  /* Deliberately NOT backdrop-filter. These 12 chips move every frame, and a
+     backdrop blur makes the compositor re-sample the page behind each one on
+     each frame — measurably costly. A flat translucent fill is visually
+     equivalent over this dark background and costs nothing. */
+  background: rgba(32, 26, 56, 0.72);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.82);
+  white-space: nowrap;
+}
+
+@keyframes ring-spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .tech-ring-stage {
+    --ring-r: 150px;
+    height: 120px;
+  }
+  .tech-ring {
+    width: 128px;
+  }
+  .tech-ring__item {
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-ring {
+    animation: none;
+  }
+}
+
+/* The spark-trail cursor canvas sits above everything and ignores pointer input */
+.spark-cursor {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 150;
+  pointer-events: none;
+}
+
+/* Hide the custom cursor layer on touch devices (no pointer to trail) */
+@media (hover: none) {
+  .spark-cursor {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+  .spark-cursor {
+    display: none;
+  }
 }

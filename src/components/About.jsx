@@ -1,85 +1,74 @@
 import { CodeXml, Sparkles, Target, ArrowRight } from 'lucide-react'
 import Reveal from './Reveal'
+import SectionHeading from './SectionHeading'
 
 const CARDS = [
   {
     icon: CodeXml,
     title: 'Backend Development',
-    text: 'Building robust server-side applications with Java, Spring Boot, and RESTful APIs. Expert in creating scalable microservices.',
+    text: 'Building robust server-side applications with Java, Spring Boot, Node.js and RESTful APIs. Experienced in scalable, multi-tenant architectures.',
     cta: 'View Projects',
     href: '#projects',
-    variant: 'light',
+    accent: 'brand',
   },
   {
     icon: Sparkles,
     title: 'Full-Stack Development',
-    text: 'End-to-end application development with React frontend and Spring Boot backend. Complete solution delivery.',
+    text: 'End-to-end delivery with React and Next.js on the front, Spring Boot and Node.js behind it — database design through to deployment.',
     cta: 'Explore More',
     href: '#projects',
-    variant: 'dark',
+    accent: 'featured',
   },
   {
     icon: Target,
     title: 'Problem Solving',
-    text: 'Strong analytical skills with focus on clean, efficient code. Quick learner adapting to new technologies.',
+    text: 'Strong analytical skills with a focus on clean, efficient code. Quick learner, comfortable adapting to unfamiliar stacks under deadline.',
     cta: 'Get in Touch',
     href: '#contact',
-    variant: 'light',
+    accent: 'gold',
   },
 ]
 
 export default function About() {
   return (
-    <section id="about" className="scroll-mt-20 py-16 bg-gray-50 relative overflow-hidden">
-      <div className="absolute top-20 right-20 w-20 h-20 bg-yellow-400 rounded-full opacity-20" />
-      <div className="absolute bottom-20 left-20 w-16 h-16 bg-purple-400 rounded-full opacity-20" />
+    <section id="about" className="relative scroll-mt-24 border-t border-white/5 py-16">
+      <div className="mx-auto max-w-6xl px-6">
+        <SectionHeading eyebrow="About Me" title="Expertise Services! Let's Check it Out" />
 
-      <div className="max-w-6xl mx-auto px-6">
-        <Reveal className="text-center mb-10">
-          <span className="text-purple-600 font-bold text-sm tracking-wider uppercase">About Me</span>
-          <h2 className="text-2xl md:text-4xl font-bold text-slate-900 mt-2">
-            Expertise Services! Let's Check it Out
-          </h2>
-        </Reveal>
-
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid gap-5 md:grid-cols-3">
           {CARDS.map((card, i) => {
             const Icon = card.icon
-            const dark = card.variant === 'dark'
+            const featured = card.accent === 'featured'
             return (
-              <Reveal key={card.title} delay={i * 0.1}>
+              <Reveal key={card.title} delay={i * 0.08}>
                 <div
-                  className={`rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 h-full ${
-                    dark
-                      ? 'bg-gradient-to-br from-purple-600 to-indigo-600 text-white'
-                      : 'bg-white'
+                  className={`group h-full rounded-2xl border p-6 backdrop-blur-sm transition-all duration-300 ${
+                    featured
+                      ? 'border-brand/40 bg-gradient-to-br from-brand/20 to-brand-deep/10 shadow-glow'
+                      : 'border-white/10 bg-white/[0.03] hover:border-brand/40 hover:bg-white/[0.06]'
                   }`}
                 >
                   <div
-                    className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
-                      dark ? 'bg-white/20 backdrop-blur-sm' : i === 2 ? 'bg-yellow-100' : 'bg-purple-100'
+                    className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 ${
+                      card.accent === 'gold'
+                        ? 'bg-gold/15 text-gold'
+                        : featured
+                          ? 'bg-white/10 text-white'
+                          : 'bg-brand/15 text-brand-glow'
                     }`}
                   >
-                    <Icon
-                      className={`w-6 h-6 ${
-                        dark ? 'text-white' : i === 2 ? 'text-yellow-600' : 'text-purple-600'
-                      }`}
-                    />
+                    <Icon className="h-6 w-6" />
                   </div>
-                  <h3 className={`text-lg font-bold mb-2 ${dark ? '' : 'text-slate-900'}`}>
-                    {card.title}
-                  </h3>
-                  <p className={`text-sm mb-4 leading-relaxed ${dark ? 'text-white/90' : 'text-slate-600'}`}>
-                    {card.text}
-                  </p>
+                  <h3 className="mb-2 font-display text-lg font-bold text-white">{card.title}</h3>
+                  <p className="mb-4 text-sm leading-relaxed text-white/60">{card.text}</p>
                   <a
                     href={card.href}
-                    className={`font-semibold flex items-center gap-2 group w-fit ${
-                      dark ? 'text-yellow-400' : 'text-purple-600'
+                    className={`group/link flex w-fit items-center gap-2 text-sm font-semibold ${
+                      card.accent === 'gold' ? 'text-gold' : 'text-brand-glow'
                     }`}
                   >
                     {card.cta}
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" />
                   </a>
                 </div>
               </Reveal>

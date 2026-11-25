@@ -1,26 +1,35 @@
 import Reveal from './Reveal'
+import SectionHeading from './SectionHeading'
+import TechRing from './TechRing'
 import { SKILL_GROUPS } from '../data/skills'
 
 export default function Skills() {
   return (
-    <section id="skills" className="scroll-mt-20 py-16 bg-slate-50/50 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-100/30 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-100/30 rounded-full blur-3xl" />
+    <section id="skills" className="relative scroll-mt-24 border-t border-white/5 py-16">
+      {/* soft section glow */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          backgroundImage:
+            'radial-gradient(ellipse 50% 40% at 15% 30%, rgba(139,92,246,0.12), transparent 65%)',
+        }}
+      />
 
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <Reveal className="text-center mb-10">
-          <span className="text-cyan-600 font-medium text-sm tracking-wider uppercase">My Expertise</span>
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mt-2">Skills &amp; Technologies</h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-cyan-500 to-teal-500 mx-auto mt-3 rounded-full" />
+      <div className="mx-auto max-w-6xl px-6">
+        <SectionHeading eyebrow="My Expertise" title="Skills & Technologies" />
+
+        <Reveal className="mb-10">
+          <TechRing />
         </Reveal>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {SKILL_GROUPS.map((group, i) => (
             <Reveal key={group.title} delay={i * 0.05}>
-              <div className="bg-white rounded-xl p-5 border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-300 h-full">
-                <div className={`inline-block px-4 py-1.5 rounded-full ${group.chipBg} mb-4`}>
+              <div className="group h-full rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm transition-all duration-300 hover:border-brand/40 hover:bg-white/[0.06] hover:shadow-glow">
+                <div className="mb-4 inline-block rounded-full border border-white/10 bg-white/5 px-4 py-1.5">
                   <span
-                    className={`text-sm font-semibold bg-gradient-to-r ${group.gradient} bg-clip-text text-transparent`}
+                    className={`bg-gradient-to-r text-sm font-semibold ${group.gradient} bg-clip-text text-transparent`}
                   >
                     {group.title}
                   </span>
@@ -29,7 +38,7 @@ export default function Skills() {
                   {group.items.map((item) => (
                     <span
                       key={item}
-                      className="px-4 py-2 bg-slate-50 hover:bg-slate-100 rounded-lg text-sm text-slate-700 font-medium border border-slate-100 transition-colors cursor-default"
+                      className="cursor-default rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-medium text-white/75 transition-colors hover:border-brand/50 hover:bg-brand/10 hover:text-white"
                     >
                       {item}
                     </span>

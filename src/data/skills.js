@@ -32,7 +32,7 @@ export const SKILL_GROUPS = [
   {
     title: 'Developer Tools',
     chipBg: 'bg-slate-50',
-    gradient: 'from-slate-600 to-slate-800',
+    gradient: 'from-slate-300 to-slate-500',
     items: ['Git', 'GitHub', 'Docker', 'Postman', 'VS Code', 'AWS', 'Claude Code', 'Antigravity', 'Cursor'],
   },
   {
